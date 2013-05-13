@@ -11,10 +11,11 @@ class RomanNumeric
 	end
 
 	def to_s
+		to_i or return ""
 		@to_s ||= to_i.to_roman
 	end
 
-	def ==(value)
+	def == (value)
 		to_i == value.to_i
 	end
 
@@ -35,9 +36,9 @@ class RomanNumeric
 	end
 end
 
-
-# make III can be used and set it's value to a RomanNumeric instance
+# make constant like III can be used and set it's value to a RomanNumeric instance
 def Object.const_missing sym
 	RomanNumerals::ROMAN_TEST_REGEXP === sym.to_s and return const_set(sym, RomanNumeric.new(sym))
 	super
 end
+

@@ -17,8 +17,12 @@ describe RomanNumeric do
 	it "should behave like integer" do
 		(@roman + 100).should == RomanNumeric.new(2113)
 		(@roman - 100).to_s.should === "MCMXIII"
-		(@roman * 2).to_i.should == 20130
+		(@roman * 2).to_i.should == 2013*2
+		(@roman / 2).should == RomanNumeric.new(2013/2)
 	end
-	
+
+	it "should support constant type of RomanNumeric" do
+		(MCM + 100).should == RomanNumeric.new("MCM")+100
+	end
 
 end
