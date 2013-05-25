@@ -1,13 +1,23 @@
 require_relative "roman_numeric"
+require "pry"
 
 class Translator
 
 	attr_reader :input, :output
+	
 
 	def initialize(input_path="input.txt", output_path="output.txt")
 		@nums, @units= {}, {}
 		@input, @output = input_path, output_path
-	end
+  end
+  
+  def nums_regexp
+    @nums.keys.join('|')
+  end
+  
+  def units_regexp
+    @units.keys.join('|')
+  end
 
 	def read(path=input)
 		clear
@@ -34,6 +44,8 @@ class Translator
 			when credits_regexp
 				num = (@units[$5] * convert_to_roman($1)).to_i
 				write "#{$1} #{$5} is #{num} Credits"
+			when prd_to_prod_regexp
+				write "#{$2} #{$3} is #{convert_to_roman($2).to_i * @units[$3] / @units[$1]} #{$1}"
 			else
 				write "I have no idea what you are talking about"
 			end
@@ -55,15 +67,19 @@ class Translator
 	end
 
 	def unit_regexp
-		Regexp.new "^(((#{@nums.keys.join('|')})\\s)+)(\\w+)\\sis\\s(\\d+)\\sCredits"
+		Regexp.new "^(((#{nums_regexp})\\s)+)(\\w+)\\sis\\s(\\d+)\\sCredits"
 	end
 
 	def how_much_regexp
-		Regexp.new "^how\\smuch\\sis\\s(((#{@nums.keys.join('|')})[\\s|\\?])+)"
+		Regexp.new "^how\\smuch\\sis\\s(((#{nums_regexp})[\\s|\\?])+)"
 	end
 
 	def credits_regexp
-		Regexp.new "^how\\smany\\sCredits\\sis\\s(((#{@nums.keys.join('|')})\\s)+)((#{@units.keys.join('|')})[\\s|\?])"
+		Regexp.new "^how\\smany\\sCredits\\sis\\s(((#{nums_regexp})\\s)+)((#{units_regexp})[\\s|\\?])"
+	end
+
+	def prd_to_prod_regexp
+		Regexp.new "^how\\smany\\s(?<targetProduct>#{units_regexp})\\sis\\s(?<sourceNumber>((#{nums_regexp})\\s)+)(?<sourceProduct>(#{units_regexp}))"
 	end
 
 	def inspect

@@ -41,4 +41,3 @@ def Object.const_missing sym
 	RomanNumerals::ROMAN_TEST_REGEXP === sym.to_s and return const_set(sym, RomanNumeric.new(sym))
 	super
 end
-

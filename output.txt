@@ -1,5 +1,7 @@
-pish tegj hhh hhh  is 42
-hhh prok  Silver is 22 Credits
-hhh prok  Gold is 57800 Credits
-hhh prok  Iron is 782 Credits
+pish tegj glob glob  is 42
+glob prok  Silver is 22 Credits
+glob prok  Gold is 57800 Credits
+glob prok  Iron is 782 Credits
+atre  Silver is 5666 Credits
 I have no idea what you are talking about
+glob  Gold is 2550.0 Silver
