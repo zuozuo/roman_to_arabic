@@ -8,7 +8,7 @@
 	- To run the program: `ruby run.rb`, or you can supply it with two commandline arguments like `ruby run.rb input.txt output.txt`, 
 		the first argument specify the input file path while the second is output file path, `input.txt` and `output.txt` in the program directory
 		is the default
-#### Input requirement
+#### Input requirement(please see input.txt)
 	The input file must follow the input example supplied in the question.
 	First you should tell the program the basic numerals units transformational relation with Roman numerals, like:
 		
